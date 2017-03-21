@@ -30,8 +30,7 @@
    Expects, in order, last name, first name, gender,
    favorite color, and date of birth."
 	[line]
-	(let [entries (->> (determine-separator line)
-										 (str/split line))]
+	(let [entries (str/split line (determine-separator line))]
 		(if (not= (count entries) 5)
 			(throw (Exception. "in parse-record: Invalid number of entries in record."))
 			{:last (entries 0)
