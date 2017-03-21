@@ -6,14 +6,15 @@
 
 (defn determine-separator
 	"Returns the separator of a record as a pattern.
-   Throws an exception a pipe, comma, or space is not found."
+   Throws an exception if a pipe, comma, or space is not found."
 	[line]
 	(loop [line-left line]
 		(condp = (first line-left)
 			\| #"\|" 
 			\, #"," 
 			\space #" "
-			nil (throw (Exception. "in determine-separator: No or unrecognized separators in record."))
+			nil (throw (Exception. (str "in determine-separator: No or "
+																	"unrecognized separators in record.")))
 			(recur (rest line-left)))))
 
 (defn parse-date
@@ -32,7 +33,8 @@
 	[line]
 	(let [entries (str/split line (determine-separator line))]
 		(if (not= (count entries) 5)
-			(throw (Exception. "in parse-record: Invalid number of entries in record."))
+			(throw (Exception. (str "in parse-record: Invalid number "
+															"of entries in record.")))
 			{:last (entries 0)
 			 :first (entries 1)
 			 :gender (str/lower-case (entries 2))
