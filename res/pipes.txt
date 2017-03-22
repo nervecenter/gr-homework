@@ -1,0 +1,2 @@
+Earhart|Amelia|female|blue|07-24-1897
+Ritchie|Dennis|male|yellow|09-09-1941
