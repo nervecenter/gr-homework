@@ -2,5 +2,5 @@ Collazo Christopher male green 06-21-1991
 Washington George male red 02-22-1732
 Earhart Amelia female blue 07-24-1897
 Ritchie Dennis male yellow 09-09-1941
-Earhart Amelia female blue 07-24-1897
+Lovelace Ada female purple 12-10-1815
 Randall Lisa female orange 06-18-1962

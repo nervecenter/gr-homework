@@ -4,6 +4,10 @@
 						[clj-time.core :as t])
   (:gen-class))
 
+;;
+;; PARSING FUNCTIONS
+;;
+
 (defn determine-separator
 	"Returns the separator of a record as a pattern.
    Throws an exception if a pipe, comma, or space is not found."
@@ -21,7 +25,7 @@
 	"Parses a date string in MM-DD-YYYY into a clj-time
    LocalDate object. Throws if it doesn't find three elements."
 	[date-str]
-	(let [date-nums (mapv read-string (str/split date-str #"-"))]
+	(let [date-nums (mapv #(. Integer parseInt %) (str/split date-str #"-"))]
 		(if (not= 3 (count date-nums))
 			(throw (Exception. "in parse-date: Dates must be in MM-DD-YYYY format."))
 			(t/local-date (date-nums 2) (date-nums 0) (date-nums 1)))))
@@ -52,6 +56,39 @@
    line separations."
 	[filename]
 	(parse-records-string (slurp filename)))
+
+;;
+;; SORTING FUNCTIONS
+;;
+
+(defn female?
+	[rec]
+	(= (:gender rec) "female"))
+
+(defn male?
+	[rec]
+	(not (female? rec)))
+
+(defn sort-by-last-name-ascending
+	[records]
+	(sort #(compare (:last %1) (:last %2)) records))
+
+(defn sort-by-last-name-descending
+	[records]
+	(sort #(compare (:last %2) (:last %1)) records))
+
+(defn sort-by-gender-then-last-name-ascending
+	[records]
+	(concat (sort-by-last-name-ascending (filter female? records))
+					(sort-by-last-name-ascending (filter male? records))))
+
+(defn sort-by-dob-ascending
+	[records]
+	(sort #(t/before? (:dob %1) (:dob %2)) records))
+
+(defn print-record
+	[rec]
+	rec)
 
 (defn -main
   "I don't do a whole lot ... yet."
