@@ -7,8 +7,11 @@
 								 [org.clojure/tools.namespace "0.2.11"]
 								 [clj-time "0.13.0"]
 								 [http-kit "2.2.0"]
-								 [ring/ring-core "1.6.0-RC1"]
-								 [compojure "1.5.2"]]
+                 [ring "1.6.0-RC1"]
+                 [ring/ring-json "0.4.0"]
+								 [compojure "1.5.2"]
+                 ;;[cheshire "5.7.0"] Don't need, instead ring-json?
+                 ]
   :main ^:skip-aot gr-homework.core
 	:resource-paths ["resources"]
   :target-path "target/%s"
