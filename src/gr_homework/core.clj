@@ -8,7 +8,7 @@
 						[ring.middleware.content-type :refer [wrap-content-type]]
 						[ring.middleware.json :refer [wrap-json-response]]
             [ring.middleware.reload :refer [wrap-reload]]
-            [cheshire.core :as json])
+						[cheshire.core :as json])
   (:gen-class))
 
 ;;
@@ -19,7 +19,6 @@
 	"Returns the separator of a record as a pattern.
    Throws an exception if a pipe, comma, or space is not found."
 	[line]
-  (println "Our line:" line)
 	(loop [line-left line]
 		(condp = (first line-left)
 			\| #"\|" 
@@ -154,11 +153,14 @@
 
 (def records (atom nil))
 
-(defmacro records-response [sorting-func]
+(defn records-response [sorting-func]
   (response
    (if (nil? @records)
      "No records stored.\n"
-     (eval sorting-func))))
+		 (json/generate-string
+			(->> (sorting-func @records)
+					 (map #(assoc % :dob (date-str (:dob %)))))
+			{:pretty true}))))
 
 ;;
 ;; REST SERVER
@@ -168,21 +170,19 @@
 	(context "/records" req
 					 (POST "/" {body :body}
                  (try
-                   (println (slurp body))
                    (swap! records conj (parse-record (slurp body)))
-                   (response "Added record.")
+                   (response "Added record.\n")
                    (catch Exception e
                      {:status 500
                       :body (str "Could not add record:\nException "
                                  (.getMessage e)
-                                 "\n")}))
-                 )
+                                 "\n")})))
 					 (GET "/gender" req
-                (records-response (sort-by-gender-then-last-name-ascending @records)))
+                (records-response sort-by-gender-then-last-name-ascending))
 					 (GET "/birthdate" req
-                (records-response (sort-by-dob-ascending @records)))
+                (records-response sort-by-dob-ascending))
 					 (GET "/name" req
-                (records-response (sort-by-last-name-ascending @records))))
+                (records-response sort-by-last-name-ascending)))
   (ANY "*" req (not-found "404 Not Found:\nFill this in with usage instructions!\n")))
 
 (def app
@@ -213,6 +213,5 @@
 	 (println "Reading" (count filenames) "input files...")
 	 (print-three-outputs (parse-multiple-records-files filenames)))
 	([]
-   (println "Starting server...")
    (start-server)
-   (println "Done, waiting...")))
+   (println "Server started.")))
