@@ -57,6 +57,8 @@ You may optionally store these responses in files for later viewing:
 	$ curl 127.0.0.1:8080/name > name.json
 	$ curl 127.0.0.1:8080/birthdate > birthdate.json
 
+To end the server, in the terminal where it is running, simply enter Ctrl-C.
+
 To run the test suite, simply use
 
 	$ lein test

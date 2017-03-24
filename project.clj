@@ -1,6 +1,7 @@
 (defproject gr-homework "0.5.0"
   :description "A program that parses and sorts records,
                 with REST endpoints for querying."
+	:license "Copyright © 2017 Chris Collazo"
   :dependencies [[org.clojure/clojure "1.8.0"]
 								 [org.clojure/tools.namespace "0.2.11"]
 								 [clj-time "0.13.0"]
