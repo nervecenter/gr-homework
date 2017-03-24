@@ -20,9 +20,9 @@ Each field must be a single continuous string. Gender is expected to be "male" o
 
 Some examples:
 
-	$ Earhart|Amelia|female|blue|07-24-1897
-	$ Washington,George,male,red,02-22-1732
-	$ Lovelace Ada female purple 12-10-1815
+	Earhart|Amelia|female|blue|07-24-1897
+	Washington,George,male,red,02-22-1732
+	Lovelace Ada female purple 12-10-1815
 	
 There are two methods for using this program. The first is a command line usage which grabs files of records. It can be used like so, with the example files in "res/" (records MUST be separated by newlines):
 
