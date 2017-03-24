@@ -61,7 +61,7 @@
                 (records-response sort-by-dob-ascending))
            (GET "/name" req
                 (records-response sort-by-last-name-ascending)))
-  (ANY "*" req (not-found "404 Not Found:\nFill this in with usage instructions!\n")))
+  (ANY "*" req (not-found "404 Not Found:\nCheck README.md for instructions!\n")))
 
 (def app
   (-> gr-homework-routes
