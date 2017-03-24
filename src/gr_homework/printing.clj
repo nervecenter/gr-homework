@@ -1,3 +1,5 @@
+;; Copyright © 2017 Chris Collazo
+
 (ns gr-homework.printing
   (:use gr-homework.sorting)
   (:require [clj-time.core :as t]))

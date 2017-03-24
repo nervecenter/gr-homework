@@ -1,3 +1,5 @@
+;; Copyright © 2017 Chris Collazo
+
 (ns gr-homework.core
   (:use [clojure.tools.namespace.repl :only (refresh)]
         gr-homework.parsing

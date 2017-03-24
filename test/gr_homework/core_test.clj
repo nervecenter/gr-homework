@@ -1,3 +1,5 @@
+;; Copyright © 2017 Chris Collazo
+
 (ns gr-homework.core-test
   (:use gr-homework.core
         gr-homework.sorting)

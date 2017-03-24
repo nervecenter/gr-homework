@@ -1,3 +1,5 @@
+;; Copyright © 2017 Chris Collazo
+
 (ns gr-homework.printing-test
   (:require [clojure.test :refer :all]
             [gr-homework.printing :refer :all]

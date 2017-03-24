@@ -1,3 +1,5 @@
+;; Copyright © 2017 Chris Collazo
+
 (ns gr-homework.parsing
   (:require [clojure.string :as str]
             [clj-time.core :as t]))
