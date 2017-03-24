@@ -6,7 +6,7 @@ By Chris Collazo
 
 ## Installation
 
-Simply extract gr-homework to its own directory, open a terminal and "cd gr-homework", and follow the usage below.
+Simply extract or clone gr-homework to its own directory, open a terminal and "cd gr-homework", and follow the usage below.
 
 ## Usage
 
