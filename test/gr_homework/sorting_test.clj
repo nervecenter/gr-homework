@@ -1,39 +1,8 @@
 (ns gr-homework.sorting-test
   (:require [clojure.test :refer :all]
             [gr-homework.sorting :refer :all]
+						[gr-homework.core-test :refer [example-records]]
 						[clj-time.core :as t]))	
-
-(def example-records
-	[{:last "Collazo"	
-		:first "Christopher"
-		:gender "male"
-		:fav-color "green"
-		:dob (t/local-date 1991 6 21)}
-	 {:last "Washington"
-		:first "George"
-		:gender "male"
-		:fav-color "red"
-		:dob (t/local-date 1732 2 22)}
-	 {:last "Earhart"
-		:first "Amelia"
-		:gender "female"
-		:fav-color "blue"
-		:dob (t/local-date 1897 7 24)}
-	 {:last "Ritchie"
-		:first "Dennis"
-		:gender "male"
-		:fav-color "yellow"
-		:dob (t/local-date 1941 9 9)}
-	 {:last "Lovelace"
-		:first "Ada"
-		:gender "female"
-		:fav-color "purple"
-		:dob (t/local-date 1815 12 10)}
-	 {:last "Randall"
-		:first "Lisa"
-		:gender "female"
-		:fav-color "orange"
-		:dob (t/local-date 1962 6 18)}])
 
 (deftest female?-test
 	(testing "Testing that we correctly determine that a record is female."

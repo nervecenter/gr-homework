@@ -11,16 +11,15 @@
 						[cheshire.core :as json])
   (:gen-class))
 
-;;
-;; RECORDS ATOM
-;;
-
+;; An atom to act as a live store for records
 (def records (atom nil))
 
+;; A general handler for our three GET actions
+;; In a larger project, this would likely be organized in a GET namespace
 (defn records-response
 	"If there are no records stored, responds with a message indicating such.
-   Otherwise, runs the given sorting func on stored records, json encodes, 
-   sends."
+   Otherwise, runs the passed-in sorting func on stored records,
+   JSON encodes, sends the resulting JSON back to client."
 	[sorting-func]
   (response
    (if (nil? @records)
@@ -30,24 +29,32 @@
 					 (map #(assoc % :dob (date-str (:dob %)))))
 			{:pretty true}))))
 
+;; Our single POST action's handler
+;; In a larger project, this would likely be organized in a POST namespace
+(defn post-record
+	"Given a string of a raw record line, post it to the atom
+   and return a response depending on success or failure."
+	[line]
+	(try
+		(let [rec (parse-record line)]
+			(swap! records conj rec)
+			(response (str "Added record for "
+										 (:first rec) " " (:last rec)
+										 ".\n")))
+		(catch Exception e
+			{:status 500
+			 :body (str "Could not add record: Exception "
+									(.getMessage e)
+									"\n")})))
+
 ;;
-;; REST SERVER
+;; HTTP-Kit/Ring/Compojure Setup and Config
 ;;
 
 (defroutes gr-homework-routes
 	(context "/records" req
 					 (POST "/" {body :body}
-                 (try
-                   (let [rec (parse-record (slurp body))]
-										 (swap! records conj rec)
-										 (response (str "Added record for "
-																		(:first rec) " " (:last rec)
-																		".\n")))
-                   (catch Exception e
-                     {:status 500
-                      :body (str "Could not add record: Exception "
-                                 (.getMessage e)
-                                 "\n")})))
+								 (post-record (slurp body)))
 					 (GET "/gender" req
                 (records-response sort-by-gender-then-last-name-ascending))
 					 (GET "/birthdate" req

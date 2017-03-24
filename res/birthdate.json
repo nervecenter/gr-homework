@@ -1,0 +1,37 @@
+[ {
+  "last" : "Washington",
+  "first" : "George",
+  "gender" : "male",
+  "fav-color" : "red",
+  "dob" : "2/22/1732"
+}, {
+  "last" : "Lovelace",
+  "first" : "Ada",
+  "gender" : "female",
+  "fav-color" : "purple",
+  "dob" : "12/10/1815"
+}, {
+  "last" : "Earhart",
+  "first" : "Amelia",
+  "gender" : "female",
+  "fav-color" : "blue",
+  "dob" : "7/24/1897"
+}, {
+  "last" : "Ritchie",
+  "first" : "Dennis",
+  "gender" : "male",
+  "fav-color" : "yellow",
+  "dob" : "9/9/1941"
+}, {
+  "last" : "Randall",
+  "first" : "Lisa",
+  "gender" : "female",
+  "fav-color" : "orange",
+  "dob" : "6/18/1962"
+}, {
+  "last" : "Collazo",
+  "first" : "Christopher",
+  "gender" : "male",
+  "fav-color" : "green",
+  "dob" : "6/21/1991"
+} ]
