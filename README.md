@@ -12,9 +12,9 @@ Simply extract gr-homework to its own directory, open a terminal and "cd gr-home
 
 This program reads in records of people, containing five specific fields and formatted via one of the following three separator schemes:
 
-	$ LastName|FirstName|Gender|FavoriteColor|BirthDate
-	$ LastName,FirstName,Gender,FavoriteColor,BirthDate
-	$ LastName FirstName Gender FavoriteColor BirthDate
+	LastName|FirstName|Gender|FavoriteColor|BirthDate
+	LastName,FirstName,Gender,FavoriteColor,BirthDate
+	LastName FirstName Gender FavoriteColor BirthDate
 
 Each field must be a single continuous string. Gender is expected to be "male" or "female", thought it is not case sensitive. Birthdates must be ENTERED in "mm-dd-yyyy" format, though the program eventually DISPLAYS them in "m/d/yyyy" format.
 
