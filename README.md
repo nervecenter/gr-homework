@@ -16,7 +16,7 @@ This program reads in records of people, containing five specific fields and for
 	LastName,FirstName,Gender,FavoriteColor,BirthDate
 	LastName FirstName Gender FavoriteColor BirthDate
 
-Each field must be a single continuous string. Gender is expected to be "male" or "female", thought it is not case sensitive. Birthdates must be ENTERED in "mm-dd-yyyy" format, though the program eventually DISPLAYS them in "m/d/yyyy" format.
+Each field must be a single continuous string. Gender is expected to be "male" or "female", though it is not case sensitive. Birthdates must be ENTERED in "mm-dd-yyyy" format, though the program eventually DISPLAYS them in "m/d/yyyy" format.
 
 Some examples:
 
