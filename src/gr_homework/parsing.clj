@@ -32,30 +32,27 @@
 	(let [entries (str/split line (determine-separator line))]
 		(if (not= (count entries) 5)
 			(throw (Exception. (str "in parse-record: Invalid number "
-															"of entries in record.")))
+															"of entries in record, or bad separator.")))
 			{:last (entries 0)
 			 :first (entries 1)
 			 :gender (str/lower-case (entries 2))
 			 :fav-color (entries 3)
 			 :dob (parse-date (entries 4))})))
 
-(defn parse-records-string
-	"Parses multiple records in a raw string, must contain
-   line separations."
-	[rec-str]
-	(mapv parse-record (str/split-lines rec-str)))
-
 (defn parse-records-file
-	"Parses records in a file, must contain
-   line separations."
+	"Parses records in a file, must contain line separations.
+   Returns a vector of records."
 	[filename]
-	(parse-records-string (slurp filename)))
+	(->> filename
+			 (slurp)
+			 (str/split-lines)
+			 (mapv parse-record)))
 
 (defn parse-multiple-records-files
-	"Parses multiple records files, concats them into
-   one collection of records."
+	"Parses multiple records files, concats them.
+   Returns a vector of records."
 	[filenames]
 	(->> filenames
-			 (map slurp)
-			 (map parse-records-string)
-			 (reduce concat)))
+			 (map parse-records-file)
+			 (reduce concat)
+			 (vec)))

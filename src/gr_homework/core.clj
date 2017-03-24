@@ -82,9 +82,12 @@
    will be printed to standard output sorted in the three specified sort
    configurations."
   ([& filenames]
-	 (println "\nReading" (count filenames) "input files...\n"
-						(three-outputs-str
-						 (parse-multiple-records-files filenames))))
+	 (println "\nReading" (count filenames) "input files...")
+	 (print
+		(try
+			(three-outputs-str (parse-multiple-records-files filenames))
+			(catch Exception e
+				(str "Couldn't parse a file: " (.getMessage e))))))
 	([]
    (start-server)
    (println "Server started.")))
